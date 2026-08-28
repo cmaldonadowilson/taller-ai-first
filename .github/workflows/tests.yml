@@ -15,7 +15,7 @@ jobs:
       # `version-file` toma de .tool-versions tanto la versión de uv
       # como la de Python, así CI no se desincroniza del entorno local.
       - name: Instalar uv
-        uses: astral-sh/setup-uv@v10
+        uses: astral-sh/setup-uv@v10.0.1
         with:
           version-file: .tool-versions
           enable-cache: true
