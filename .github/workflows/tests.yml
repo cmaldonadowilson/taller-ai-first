@@ -1,0 +1,27 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v7
+
+      # `version-file` toma de .tool-versions tanto la versión de uv
+      # como la de Python, así CI no se desincroniza del entorno local.
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v10
+        with:
+          version-file: .tool-versions
+          enable-cache: true
+
+      - name: Instalar dependencias
+        run: uv sync --locked --all-groups
+
+      - name: Correr los tests
+        run: uv run pytest
