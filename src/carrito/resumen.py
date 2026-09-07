@@ -18,7 +18,10 @@ def resumen(pedido) -> dict[str, int]:
     base = subtotal(pedido)
     descontado = total_con_descuentos(pedido)
     impuesto = iva(descontado)
-    envio = costo_envio(pedido, descontado)
+    # El envío se decide sobre el bruto con IVA, no sobre lo que se paga: los
+    # descuentos no bajan el umbral. Ver tests/features/envio.feature.
+    threshold_base = base + iva(base)
+    envio = costo_envio(pedido, threshold_base)
 
     lineas = {"Subtotal": base}
     if descontado != base:

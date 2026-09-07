@@ -45,7 +45,7 @@ El cálculo es un pipeline de módulos sin estado. `resumen.resumen()` es el ún
 precios.subtotal
   → descuentos.total_con_descuentos   (3 etapas, ver abajo)
     → impuestos.iva                   (sobre el monto ya descontado)
-    → envio.costo_envio               (recibe el monto descontado, ANTES de IVA)
+    → envio.costo_envio               (recibe el subtotal BRUTO más su IVA)
       → resumen.resumen               arma el dict del desglose
 ```
 
